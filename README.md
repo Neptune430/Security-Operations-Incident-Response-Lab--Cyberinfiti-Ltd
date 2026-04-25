@@ -1,205 +1,320 @@
-# Security-Operations-Incident-Response-Lab---Cyberinfiti-Ltd.
- A hands-on simulation of real-world Security Operations Center (SOC) activities including threat detection, incident response, malware analysis, and vulnerability management.
+# Security Operations & Incident Response Report  
+### CyberInfiniti Ltd — Final Sprint (April 2026)
+
+**Report ID:** SOC-TIV-2026-INT-001  
+**Author:** John Ofulue  
+**Team:** CyberInfiniti SOC Analyst Team  
+**Duration:** 2-Week Sprint  
+**Classification:** Confidential / Internal Use  
 
 ---
 
-## 📌 Overview
+## 1. Executive Summary
 
-This project documents my final sprint during a SOC-focused cybersecurity internship, where I performed end-to-end security operations across multiple incident scenarios.
+During this sprint, I actively contributed to multiple security operations workstreams, simulating real-world SOC responsibilities across threat detection, incident response, and vulnerability management.
 
-The work simulates a real enterprise environment using Azure AD, SIEM tools, and threat intelligence platforms, focusing on detection, investigation, and response.
+The engagement involved investigating coordinated phishing attacks, analyzing suspicious authentication activity, conducting malware analysis, engineering detection rules, and assessing vulnerabilities across both enterprise systems and mobile devices.
 
----
+Key incidents included:
 
-## 🎯 Objectives
+- A phishing campaign targeting multiple users with credential-harvesting links and malicious payloads  
+- A confirmed account compromise involving unauthorized access and data exfiltration  
+- A malware outbreak involving AsyncRAT and Raccoon Stealer across endpoints  
+- Critical vulnerability exposures in mobile devices and Microsoft infrastructure  
 
-- Investigate real-world phishing and email-based threats  
-- Analyze suspicious authentication activity  
-- Perform malware analysis using sandbox environments  
-- Engineer detection rules in a SIEM (Microsoft Sentinel)  
-- Identify and remediate system vulnerabilities  
-- Develop structured incident response playbooks  
+All incidents were handled using structured SOC methodologies aligned with industry frameworks, ensuring proper containment, eradication, and recovery.
 
 ---
 
-## 🧠 Skills Demonstrated
+## 2. Scope of Work
 
-- Security Operations (SOC)  
-- Incident Response & Threat Hunting  
-- Log Analysis (Azure AD, Sign-in Logs)  
-- Malware Analysis (Static & Dynamic)  
-- Threat Intelligence & IOC Enrichment  
-- SIEM Engineering (Microsoft Sentinel, KQL)  
-- Vulnerability Assessment & Risk Prioritization  
+This report consolidates all activities completed during the sprint, including:
 
----
+- Email Threat Investigation  
+- Suspicious Login Analysis  
+- Malware Analysis  
+- Custom Detection Engineering (Microsoft Sentinel)  
+- Vulnerability Management (Mobile Devices & Patch Tuesday)  
+- Incident Response Playbook Development  
 
-## 🛠️ Tools & Technologies
-
-- Microsoft Sentinel (SIEM)  
-- Azure Active Directory (Entra ID)  
-- VirusTotal  
-- ANY.RUN Sandbox  
-- URLScan  
-- Hybrid Analysis  
-- Splunk (log correlation concepts)  
+Each workstream was originally documented as a standalone mini-report and is summarized here.
 
 ---
 
-## 🔍 Project Workstreams
+## 3. Methodology
 
-### 1. 📧 Email Threat Investigation
-- Analyzed 5 reported emails  
-- Identified phishing, malware delivery, and social engineering attempts  
-- Extracted and enriched Indicators of Compromise (IoCs)  
+A structured SOC workflow was followed throughout:
 
-📄 [View Report](./reports/email-investigation.md)
+### Data Collection
+- Azure AD Sign-in Logs  
+- Email headers and artifacts  
+- Endpoint telemetry  
+- Threat intelligence sources  
 
----
+### Analysis
+- IOC enrichment using VirusTotal, URLScan, ANY.RUN  
+- Behavioral analysis via sandboxing  
+- Mapping to MITRE ATT&CK techniques  
 
-### 2. 🔐 Suspicious Login Investigation
-- Investigated anomalous login patterns  
-- Identified brute-force attack and account compromise  
-- Confirmed data exfiltration activity  
+### Correlation
+- Cross-incident linkage  
+- Timeline reconstruction  
+- Attack flow analysis  
 
-📄 [View Report](./reports/suspicious-login.md)
+### Response
+- Containment  
+- Eradication  
+- Recovery  
 
----
-
-### 3. 🦠 Malware Analysis
-- Analyzed AsyncRAT and Raccoon Stealer samples  
-- Observed persistence, C2 communication, and credential theft  
-- Mapped behavior to MITRE ATT&CK  
-
-📄 [View Report](./reports/malware-analysis.md)
-
----
-
-### 4. 🚨 Custom SIEM Detection Rules
-- Built 4 Microsoft Sentinel detection rules  
-- Covered authentication anomalies, C2 traffic, and data exfiltration  
-
-📄 [View Report](./reports/custom-alerts.md)
+### Documentation
+- Evidence logging  
+- Reporting  
+- Team collaboration  
 
 ---
 
-### 5. 🛡️ Vulnerability Management
+## 4. Workstream Summary
 
-#### Mobile Devices
-- Assessed 500-device fleet  
-- Identified actively exploited Android vulnerabilities  
+### 4.1 Email Threat Investigation
 
-#### Patch Management
-- Analyzed Microsoft Patch Tuesday vulnerabilities  
-- Prioritized critical CVEs (CVSS 9.0+)  
+Five reported emails were analyzed to determine their legitimacy.
 
-📄 [View Report](./reports/vulnerability-management.md)
+**Key Findings:**
+- 3 emails were confirmed malicious (phishing + malware delivery)  
+- 1 email was suspicious (social engineering)  
+- 1 email was benign  
 
----
+**Notable Indicators:**
+- Malicious domains: `wtools.io`, `contaboserver.net`  
+- Payload delivery via `.exe` files and Google Drive links  
+- Brand impersonation (e.g., fake Adobe update)
 
-### 6. 📘 Incident Response Playbooks
-- Developed structured response workflows  
-- Aligned with NIST SP 800-61  
-
-📄 [View Report](./reports/playbooks.md)
-
----
-
-## ⚠️ Key Findings
-
-- Phishing was the primary attack vector across incidents  
-- Lack of MFA enabled account compromise  
-- Malware established persistence and C2 communication  
-- Sensitive data (payroll) was successfully exfiltrated  
-- Critical vulnerabilities remained unpatched  
+**Actions Taken:**
+- Blocked malicious domains and senders  
+- Removed emails from affected mailboxes  
+- Educated users on phishing risks  
 
 ---
 
-## 🧩 Indicators of Compromise (Sample)
+### 4.2 Suspicious Login Investigation
 
-### IPs:
-- 79.124.60.6
-- 150.158.77.170
-- 128.24.231.64
+Analysis of authentication logs revealed a confirmed account compromise.
 
-### Domains:
-- wtools.io
-- contaboserver.net
-- theannoyingsite.com
+**Key Findings:**
+- Brute-force attempts from foreign IPs  
+- Successful logins from:
+  - Bulgaria  
+  - China  
+  - Thailand  
+- Data exfiltration from SharePoint  
 
+**Compromised Assets:**
+- Payroll data  
+- Internal vulnerability report  
 
+**Response Actions:**
+- Password reset and session revocation  
+- MFA enforcement  
+- Firewall blocking of malicious IPs  
+- Enhanced monitoring  
 
 ---
 
-## 🚑 Incident Response Actions
+### 4.3 Malware Analysis
 
+Two malware samples were analyzed:
+
+- AsyncRAT (Remote Access Trojan)  
+- Raccoon Stealer (credential harvesting malware)  
+
+**Behavior Observed:**
+- Process injection into `svchost.exe`  
+- Registry persistence mechanisms  
+- Command & Control (C2) communication  
+- Credential theft from browsers  
+
+**Affected Systems:**
+- Production servers  
+- Executive workstations  
+
+**Response Actions:**
+- Endpoint isolation  
+- Malware removal  
+- System re-imaging  
+- Network blocking of C2 infrastructure  
+
+---
+
+### 4.4 Custom Detection Engineering
+
+Four Microsoft Sentinel detection rules were developed:
+
+- Suspicious foreign login activity  
+- Malware C2 communication  
+- Sensitive data exfiltration  
+- Abuse of legitimate Microsoft domains  
+
+**Impact:**
+- Transition from reactive to proactive detection  
+- Improved SOC visibility  
+- Reduced detection time  
+
+---
+
+### 4.5 Vulnerability Management
+
+#### Mobile Device Assessment
+
+- 500-device fleet analyzed  
+- 50% outdated devices  
+- 3 actively exploited Android vulnerabilities identified  
+
+**Risks:**
+- Privilege escalation  
+- Remote code execution  
+- Data compromise  
+
+**Recommendations:**
+- Enforce updates  
+- Deploy MDM (Microsoft Intune)  
+- Segment outdated devices  
+
+---
+
+#### Microsoft Patch Tuesday Analysis
+
+- 132 vulnerabilities reviewed  
+- Multiple critical CVEs identified (CVSS 9.0+)  
+
+**Key Risk:**
+- Pre-authentication Remote Code Execution  
+
+**Actions:**
+- Prioritized patch deployment  
+- Risk-based remediation planning  
+
+---
+
+### 4.6 Incident Response Playbooks
+
+Developed structured playbooks aligned with NIST SP 800-61:
+
+- Malware response workflow  
+- Email investigation procedures  
+
+**Phases Covered:**
+- Preparation  
+- Detection  
+- Analysis  
+- Containment  
+- Eradication  
+- Recovery  
+- Lessons Learned  
+
+---
+
+## 5. Indicators of Compromise (IoCs)
+
+### Network Indicators
+- `79.124.60.6` — Brute-force attacker  
+- `150.158.77.170` — Suspicious login  
+- `128.24.231.64` — Malware C2  
+
+### Domains
+- `wtools.io`  
+- `contaboserver.net`  
+- `theannoyingsite.com`  
+
+### File Indicators
+- AsyncRAT & Raccoon Stealer payload hashes  
+
+---
+
+## 6. Response Actions
+
+### Containment
 - Blocked malicious IPs and domains  
 - Isolated infected endpoints  
-- Reset compromised credentials  
-- Enforced Multi-Factor Authentication (MFA)  
-- Removed malware and persistence mechanisms  
-- Deployed detection rules for future prevention  
+- Disabled compromised accounts  
+
+### Eradication
+- Removed malware artifacts  
+- Cleared persistence mechanisms  
+- Conducted full system scans  
+
+### Recovery
+- Enforced MFA  
+- Reset credentials  
+- Re-imaged systems  
+- Deployed monitoring controls  
 
 ---
 
-## 📈 Lessons Learned
+## 7. Key Lessons Learned
 
-- MFA is critical for preventing account compromise  
-- Patch management must be prioritized  
-- Detection should be proactive, not reactive  
-- Mobile devices are often overlooked attack surfaces  
+- Lack of MFA enabled account compromise  
+- Patch management delays increased risk exposure  
+- Absence of MDM created mobile security gaps  
+- Detection mechanisms were largely reactive  
+
+**What Worked Well:**
+- Strong threat analysis and investigation  
+- Effective containment procedures  
+- Improved detection capabilities through custom rules  
 
 ---
 
-## 🚀 Recommendations
+## 8. Recommendations
 
 ### Immediate
-- Enforce MFA across all accounts  
+- Enforce MFA organization-wide  
 - Patch critical vulnerabilities  
-- Re-image infected systems  
+- Complete system re-imaging  
+
+### Short-Term
+- Deploy detection rules  
+- Conduct account audits  
+- Launch mobile update campaign  
 
 ### Long-Term
-- Deploy Mobile Device Management (MDM)  
-- Implement user security awareness training  
+- Implement MDM solution  
+- Introduce security awareness training  
 - Integrate threat intelligence feeds  
-- Automate response with SOAR  
 
 ---
 
-## 📂 Repository Structure
+## 9. Conclusion
 
+This sprint provided hands-on exposure to real-world SOC operations, covering the full lifecycle of cybersecurity incidents—from detection to recovery.
 
-├── README.md
-├── reports/
-│ ├── email-investigation.md
-│ ├── suspicious-login.md
-│ ├── malware-analysis.md
-│ ├── custom-alerts.md
-│ ├── vulnerability-management.md
-│ └── playbooks.md
-├── evidence/
-│ ├── screenshots/
-│ └── logs/
+The experience reinforced the importance of:
+
+- Proactive security controls  
+- Structured incident response  
+- Continuous monitoring and improvement  
+
+Overall, the sprint significantly strengthened my practical understanding of security operations and prepared me to contribute effectively in a SOC environment.
+
+---
+
+## 10. Appendix
+
+### Mini-Reports
+- Email Investigation  
+- Suspicious Login Analysis  
+- Malware Analysis  
+- Custom Alerts  
+- Vulnerability Management  
+- Mobile Device Security  
+- Incident Response Playbooks  
 
 
 ---
 
-## 👤 Author
+## Author
 
 **John Ofulue**  
 Cybersecurity Analyst & Instructor 
-
----
-
-## 📬 Contact
-
-- LinkedIn: (https://linkedin.com/in/john-ofulue)  
-- GitHub: (https://github.com/neptune430)  
-
----
-
-## ⭐ Final Note
-
-This project reflects my ability to think like a security analyst — not just identifying threats, but understanding their impact and responding effectively.
+CyberInfiniti Ltd  
 
 ---
