@@ -3,8 +3,7 @@
 
 **Report ID:** SOC-TIV-2026-INT-001  
 **Author:** John Ofulue  
-**Team:** CyberInfiniti SOC Analyst Team  
-**Duration:** 2-Week Sprint  
+**Team:** CyberInfiniti SOC Analyst Team 8  
 **Classification:** Confidential / Internal Use  
 
 ---
